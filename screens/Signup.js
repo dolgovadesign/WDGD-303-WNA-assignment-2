@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   buttonText: {
-      textAlign: "center",
-      color: "white",
-      fontWeight: "700",
+    textAlign: "center",
+    color: "white",
+    fontWeight: "700",
   },
   imageContainer: {
     justifyContent: 'center',

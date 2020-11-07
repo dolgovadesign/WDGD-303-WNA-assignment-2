@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+
   input:{
     backgroundColor: "white",
     padding: 20,
@@ -107,15 +108,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 20,
   },
+
   buttonText: {
       textAlign: "center",
       color: "white",
       fontWeight: "700",
   },
+
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center'
   },
+
   image: {
     marginTop: 100,
     width: 170,
@@ -127,6 +131,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingLeft: 33,
     paddingRight: 33,
-
   }
+  
 });

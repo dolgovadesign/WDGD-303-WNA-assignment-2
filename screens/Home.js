@@ -48,7 +48,7 @@ export default function Home({ navigation }) {
   if (loading) {
     return (
       <View style={styles.content}>
-        <ActivityIndicator color="darkslateblue" />
+        <ActivityIndicator />
       </View>
     );
   }
@@ -66,8 +66,8 @@ export default function Home({ navigation }) {
       <ImageBackground 
             source={require("../assets/background.png")} 
             style={{ height: height, width: width, resizeMode: 'cover' }}>
-     <View style={styles.content}>
-          <Text style={[styles.text, styles.textTitle]}>Quotes</Text>
+      <View style={styles.content}>
+          <Text style={[styles.text, styles.textTitle]}>Image</Text>
           <Text style={styles.text}>c.o.l.l.e.c.t.i.o.n</Text>
           <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('../assets/logo.png')}/>

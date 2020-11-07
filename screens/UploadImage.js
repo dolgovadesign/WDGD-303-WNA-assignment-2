@@ -111,8 +111,8 @@ const UploadImage = ({ navigation }) => {
           <>
             <Image source={{ uri: imageUri }} style={styles.image} />
             { imageUri 
-              ? <Button title="Upload Image" onPress={uploadImage} /> 
-              : <Button title="Pick Image" onPress={pickImage} /> }
+              ? <Button color="lightgreen" title="UPLOAD IMAGE" onPress={uploadImage} /> 
+              : <Button color="lightgreen" title="PICK IMAGE" onPress={pickImage} /> }
           </>
         )
       }
@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1, 
     alignItems: 'center', 
-    justifyContent: 'center' 
+    justifyContent: 'center',
+    backgroundColor: "darkgreen"
   },
   image: {
     width: 200,
@@ -135,6 +136,6 @@ const styles = StyleSheet.create({
   loadingIndicator: {
     zIndex: 5,
     width: '100%',
-    height: '100%',
+    height: '100%'
   },
 });

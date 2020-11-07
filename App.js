@@ -43,7 +43,7 @@ const StackNavigator = () => {
         component={Images} 
         options={({navigation}) => ({
           headerRight: () => (
-            <Button
+            <Button color="darkgreen"
               title="New Image"
               onPress={() => navigation.navigate("Upload Image")} />
           ),

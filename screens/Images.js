@@ -11,7 +11,7 @@ export default function Images({navigation}) {
         (async () => {
             const unsubscribe = navigation.addListener('focus', async () => {
                 setLoading(true);
-
+                                
                 try {
                     const result = await firebase.storage().ref().child('/images').listAll();
                     const imageRefs = result.items;
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
         flexDirection: "row", 
         flexWrap: "wrap", 
         justifyContent: "center", 
-        alignItems: "center" 
+        alignItems: "center",
+        backgroundColor: "darkgreen"
     },
     loadingIndicator: {
         zIndex: 5,
@@ -64,7 +65,10 @@ const styles = StyleSheet.create({
     image: {
         height: 100,
         width: 100,
-        margin: 10
+        margin: 10,
+        borderRadius: 11,
+        borderWidth: 1,
+        borderColor: "white",
     }
   });
   
