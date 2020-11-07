@@ -13,6 +13,14 @@ export default function Images({navigation}) {
                 setLoading(true);
                                 
                 try {
+                    const user = firebase.auth().currentUser;
+
+                    if (!user) {
+                        setLoading(false);
+                        navigation.navigate("Login");
+                        return;
+                    }
+
                     const result = await firebase.storage().ref().child('/images').listAll();
                     const imageRefs = result.items;
                     console.log(`Loaded ${imageRefs.length} images`);
@@ -26,6 +34,7 @@ export default function Images({navigation}) {
 
                     setImageUrls(urls);
                 } catch(error) {
+                    setImageUrls([]);
                     Alert.alert('Image Load Failed', `Loading of images failed: ${error.message}`);
                 }
 
