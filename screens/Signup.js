@@ -56,7 +56,7 @@ const Signup = ({ navigation }) => {
               })
               .then(() => {
                 console.log("User successfully created!");
-                navigation.navigate("rootTabs", {
+                navigation.navigate("Home", {
                   screen: "Screen", 
                   params: { email: res.user.email }, 
                 });           
