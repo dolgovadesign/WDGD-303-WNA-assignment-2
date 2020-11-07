@@ -5,6 +5,9 @@ import {
   View, 
   TextInput, 
   TouchableOpacity,
+  ImageBackground,
+  Image,
+  Dimensions
 } from "react-native";
 import firebase from "firebase";
 
@@ -54,7 +57,7 @@ const Signup = ({ navigation }) => {
               .then(() => {
                 console.log("User successfully created!");
                 navigation.navigate("rootTabs", {
-                  screen: "Notes", 
+                  screen: "Screen", 
                   params: { email: res.user.email }, 
                 });           
               })
@@ -67,8 +70,19 @@ const Signup = ({ navigation }) => {
     });
   };
 
+  const { width, height } = Dimensions.get('window')
+
   return (
+
     <View style={styles.container}>
+          <ImageBackground 
+            source={require("../assets/background.png")} 
+            style={{ height: height, width: width, resizeMode: 'cover' }}>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={require("../assets/logo.png")}/>
+            </View>
+
+    <View style={styles.form}>
       <TextInput
         style={styles.input}
         placeholder="Email" 
@@ -87,7 +101,7 @@ const Signup = ({ navigation }) => {
         onChangeText={onChangeTextName}
       />
       <TouchableOpacity style={styles.button} onPress={createAccount}>
-        <Text style={styles.buttonText}>Create Account</Text>
+        <Text style={styles.buttonText}>SIGN UP</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button} 
@@ -98,21 +112,18 @@ const Signup = ({ navigation }) => {
         <Text style={styles.buttonText}>Go to login</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
+    </View>
   );
 };
 
 export default Signup;
 
 const styles = StyleSheet.create({
-
-container: {
+  container: {
     flex: 1,
-    paddingTop: 100,
-    backgroundColor: "#3A5F0B",
     justifyContent: "center",
-    paddingHorizontal: 20,
   },
-
   input:{
     backgroundColor: "white",
     padding: 20,
@@ -121,15 +132,32 @@ container: {
   },
 
   button: {
-    backgroundColor: "lightgreen",
     borderRadius: 33,
+    borderWidth: 2,
+    borderColor: "white",
     marginBottom: 10,
     padding: 20,
   },
-
   buttonText: {
       textAlign: "center",
       color: "white",
       fontWeight: "700",
   },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  image: {
+    marginTop: 100,
+    width: 170,
+    height: 170,
+  },
+
+  form: {
+    flex: 1,
+    marginTop: 15,
+    paddingLeft: 33,
+    paddingRight: 33,
+
+  }
 });

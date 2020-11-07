@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { 
     StyleSheet,
     Text, 
-    View, 
+    View,
+    Image, 
     TextInput, 
     TouchableOpacity, 
+    ImageBackground,
+    Dimensions
 } from "react-native";
 import firebase from "firebase";
+import { Assets } from "@react-navigation/stack";
 
 const Login = ({ navigation }) => {
     const [loginForm, setLoginForm] = useState({
@@ -34,14 +38,23 @@ const Login = ({ navigation }) => {
           .auth()
           .signInWithEmailAndPassword(loginForm.email, loginForm.password)
           .then((res) => {
-            navigation.navigate("ScreenStack");
+            navigation.navigate("Home");
           })
           .catch((err) => alert(err.message));
       });
     };
 
+    const { width, height } = Dimensions.get('window')
+
     return (
         <View style={styles.container}>
+          <ImageBackground 
+            source={require("../assets/background.png")} 
+            style={{ height: height, width: width, resizeMode: 'cover' }}>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={require("../assets/logo.png")}/>
+            </View>
+            <View style={styles.form}>
             <TextInput 
               style={styles.input} 
               placeholder="Email" 
@@ -58,32 +71,28 @@ const Login = ({ navigation }) => {
             />
 
             <TouchableOpacity style={styles.button} onPress={loginHandler}>
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>LOGIN</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
                 style={styles.button} 
                 onPress={() => {
                   navigation.navigate("Signup");
-                }}
-            >
+                }}>
                 <Text style={styles.buttonText}>Create Account</Text>
             </TouchableOpacity>
+            </View>
+          </ImageBackground>
         </View>
     );
 };
 
 export default Login;
-
 const styles = StyleSheet.create({
-
-container: {
+  container: {
     flex: 1,
-    backgroundColor: "#3A5F0B",
     justifyContent: "center",
-    paddingHorizontal: 20,
   },
-
   input:{
     backgroundColor: "white",
     padding: 20,
@@ -92,16 +101,32 @@ container: {
   },
 
   button: {
-    backgroundColor: "lightgreen",
     borderRadius: 33,
+    borderWidth: 2,
+    borderColor: "white",
     marginBottom: 10,
     padding: 20,
   },
-
   buttonText: {
       textAlign: "center",
       color: "white",
       fontWeight: "700",
   },
-  
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  image: {
+    marginTop: 100,
+    width: 170,
+    height: 170,
+  },
+
+  form: {
+    flex: 1,
+    marginTop: 15,
+    paddingLeft: 33,
+    paddingRight: 33,
+
+  }
 });

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { Button } from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -7,13 +8,12 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
-import { AntDesign, Entypo } from "@expo/vector-icons";
 
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Signup from "./screens/Signup";
-import Screen from "./screens/Screen";
-import SubScreen from "./screens/SubScreen";
+import Images from "./screens/Images";
+import UploadImage from "./screens/UploadImage";
 
 import firebase from "firebase";
 import "@firebase/firestore";
@@ -33,14 +33,23 @@ if (!firebase.apps.length) {
 }
 
 const Drawer = createDrawerNavigator();
-const ScreenStack = createStackNavigator();
+const Stack = createStackNavigator();
 
-const ScreenStackNavigator = () => {
+const StackNavigator = () => {
   return (
-    <ScreenStack.Navigator>
-      <ScreenStack.Screen name="Screen" component={Screen} />
-      <ScreenStack.Screen name="SubScreen" component={SubScreen} />
-    </ScreenStack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="Images" 
+        component={Images} 
+        options={({navigation}) => ({
+          headerRight: () => (
+            <Button
+              title="New Image"
+              onPress={() => navigation.navigate("Upload Image")} />
+          ),
+        })} />
+      <Stack.Screen name="Upload Image" component={UploadImage} />
+    </Stack.Navigator>
   );
 };
 
@@ -71,14 +80,13 @@ const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
+      initialRouteName="Home">
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Login" component={Login} />
       <Drawer.Screen name="Signup" component={Signup} />
       <Drawer.Screen
-        name="ScreenStack"
-        component={ScreenStackNavigator}
-        options={{ title: "Screen" }}
+        name="Images"
+        component={StackNavigator}
       />
     </Drawer.Navigator>
   );
@@ -91,12 +99,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-
-
-
-
-
-
-
-
